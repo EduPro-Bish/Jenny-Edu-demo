@@ -2,7 +2,7 @@ pipeline {
     agent any
 
 on:
-    push:
+  push:
     branches:
         - main
         
