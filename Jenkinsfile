@@ -1,6 +1,5 @@
 pipeline {
     agent any
-
     stages {
         stage('Checkout') {
             steps {
@@ -10,25 +9,25 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                sh 'docker run --rm -v "${WORKSPACE}":/usr/src/app -w /usr/src/app node:18 npm install'
+                sh 'npm install'
             }
         }
 
         stage('Run Tests') {
             steps {
-                sh 'docker run --rm -v "${WORKSPACE}":/usr/src/app -w /usr/src/app node:18 npm test'
+                sh 'npm test'
             }
         }
 
         stage('Build') {
             steps {
-                sh 'docker run --rm -v "${WORKSPACE}":/usr/src/app -w /usr/src/app node:18 npm run build'
+                sh 'npm run build'
             }
         }
 
         stage('Run App') {
             steps {
-                sh 'docker run --rm -p 3000:3000 -v "${WORKSPACE}":/usr/src/app -w /usr/src/app node:18 node index.js'
+                sh 'node index.js'
             }
         }
     }
