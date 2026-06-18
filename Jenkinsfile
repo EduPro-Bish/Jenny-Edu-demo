@@ -1,5 +1,11 @@
 pipeline {
     agent any
+
+    on:
+      push:
+        branches:
+          - main
+          
     stages {
         stage('Checkout') {
             steps {
